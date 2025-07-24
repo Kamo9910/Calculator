@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <table border ="1">
+        <tr>
+            <td colspan="4">
+                <input type="text" id = "inputBox" value="0"/>
+            </td>
+        </tr> 
+        <tr>
+            <td class = "dgbut" onclick="pressedBut(7)">7</td>
+            <td class = "dgbut" onclick="pressedBut(8)">8</td>
+            <td class = "dgbut" onclick="pressedBut(9)">9</td>
+            <td class = "operbt" onclick="operatorbtpr('x')">x</td>
+        </tr>
+        <tr>
+            <td class = "dgbut" onclick="pressedBut(4)">4</td>
+            <td class = "dgbut" onclick="pressedBut(5)">5</td>
+            <td class = "dgbut" onclick="pressedBut(6)">6</td>
+            <td class = "operbt" onclick="operatorbtpr('-')">-</td>
+
+        </tr>
+        <tr>
+            <td class = "dgbut" onclick="pressedBut(1)">1</td>
+            <td class = "dgbut" onclick="pressedBut(2)">2</td>
+            <td class = "dgbut" onclick="pressedBut(3)">3</td>
+            <td class = "operbt" onclick="operatorbtpr('+')">+</td>
+        </tr>
+        <tr>
+        <td colspan="2" class = "dgbut" onclick="pressedBut(0)">0</td>
+        <td class = "acbut" onclick="btAC()">AC</td>
+        <td class = "operbt" onclick="operatorbtpr('/')">/</td>
+        <tr>
+            <td class = "operbt" colspan="4" onclick="equalsign()">=</td>
+        </tr>
+    </table>
+    <script>
+        var newline = true;
+        var value1;
+        var currentOperator;
+
+        function pressedBut(button){
+            if(newline){
+                document.getElementById("inputBox").value = button;
+                newline = false;
+            } else {
+            var currentvalue = document.getElementById("inputBox").value;
+            document.getElementById("inputBox").value= currentvalue + button;
+               }
+        }
+
+        function btAC(){
+            document.getElementById("inputBox").value = 0;
+            newline = true;
+        }
+        function operatorbtpr(operator){
+            currentOperator = operator;
+            value1 =parseInt(document.getElementById("inputBox").value);
+            newline = true;
+        }
+        function equalsign(){
+            var value2 = parseInt(document.getElementById("inputBox").value);
+            var finaltotal;
+
+            switch(currentOperator){
+                case "+":
+                    finaltotal = value1 + value2;
+                    break;
+                case "-":
+                    finaltotal = value1 - value2;
+                    break;
+                case "/":
+                    finaltotal = value1 / value2;
+                    break;
+                case "x":
+                    finaltotal = value1 * value2;
+                    break;
+                    
+            }
+            document.getElementById("inputBox").value = finaltotal;
+            value1 = 0;
+            newline = true;
+        }
+    </script>
+</body>
+</html>
